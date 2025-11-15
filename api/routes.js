@@ -1,7 +1,7 @@
 const express = require("express");
 const userRoutes = require("./auth/user.routes");
 const categoryRoutes = require("./category/category.routes");
-const expRoutes = require("./expense/expense.routes");
+const expRoutes = require("./expense/exp.routes");
 const budgetRoutes = require("./budget/budget.routes");
 
 // const authRoutes = require("./auth/auth.routes");
