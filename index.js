@@ -4,7 +4,7 @@ require("dotenv").config();
 const { verifyToken } = require("./middleware/authHeaders");
 const routes = require("./api/routes");
 const connectDB = require("./config/db");
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 const cors = require("cors");
 
 // Middleware configurations
