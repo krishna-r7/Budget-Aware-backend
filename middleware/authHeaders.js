@@ -12,8 +12,8 @@ const roleBasedRoutes = [
 exports.verifyToken = (req, res, next) => {
   const publicPaths = [
 
-    '/api/auth/franchiseowner/signup',
-    '/api/auth/franchiseowner/verifyotp',
+    '/api/auth/user/signup',
+    '/api/auth/user/login',
 
   ];
 
