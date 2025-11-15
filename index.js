@@ -28,13 +28,6 @@ app.use((req, res, next) => {
   next();
 });
 
-
-app.use(verifyToken);
-
-
-app.use("/api", routes);
-
-// Health check
 app.get("/health", (req, res) => {
   res.status(200).send({
     body: req.body,
@@ -42,7 +35,11 @@ app.get("/health", (req, res) => {
   });
 });
 
+app.use(verifyToken);
+app.use("/api", routes);
+
+// Health check
+
+
 // Start
-app.listen(port, () => {
-  console.log("Server running on port :" + port);
-});
+module.exports = app;
