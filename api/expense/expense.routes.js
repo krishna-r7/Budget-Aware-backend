@@ -1,6 +1,5 @@
-// AuthRoutes.js
 const express = require("express");
-const { ExpenseController} = require("./expense.controller");
+const { ExpenseController } = require("./expense.controller");
 const router = express.Router();
 
 const expenseController = new ExpenseController();
