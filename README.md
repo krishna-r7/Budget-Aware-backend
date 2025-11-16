@@ -42,6 +42,7 @@ cd backend
 
 2. Install dependencies:
 ```bash
+npm install
 npm install express mongoose bcryptjs jsonwebtoken cors dotenv
 ```
 
@@ -54,7 +55,7 @@ PORT=5000
 
 4. Start the server:
 ```bash
-node server.js
+node server.js or npm start
 ```
 
 The API will be running at `http://localhost:5000`
@@ -78,10 +79,10 @@ const API_URL = 'http://localhost:5000/api';
 
 4. Start the development server:
 ```bash
-npm start
+npm run dev
 ```
 
-The app will be running at `http://localhost:3000`
+The app will be running at `http://localhost:5000`
 
 ## Project Structure
 
@@ -373,14 +374,10 @@ PORT=5000
 ## Deployment
 
 
-### Frontend Deployment (Vercel Example)
+### Frontend Deployment 
 
 1. Update API_URL in `.env` to your backend URL
 
-2. Deploy to Vercel:
-```bash
-vercel --prod
-```
 
 ## Demo Credentials
 

@@ -34,10 +34,24 @@ class AuthController {
           createdAt: Date.now()
         });
         await newUser.save();
-   
+
+      const token = jwt.sign({ userId: newUser._id }, process.env.JWT_SECRET, {
+        expiresIn: "60d",
+      });
+
+      newUser.token = token;
+      await newUser.save();
+
       res.status(200).json({
         status_code: 200,
         message: "User registered successfully.",
+        data: {
+          userId: newUser._id,
+          email,
+          name,
+          createdAt: newUser.createdAt,
+          token,
+        },
       });
     } catch (error) {
       console.error(error);
@@ -78,7 +92,11 @@ class AuthController {
       res.status(200).json({
         status_code: 200,
         message: "Login successful.",
-        token,
+        data: {
+          userId: user._id,
+          email,
+          token,
+        },
       });
       
     } catch (error) {

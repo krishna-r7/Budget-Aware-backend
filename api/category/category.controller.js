@@ -99,19 +99,49 @@ class CategoryController {
         }
     }
 
-     getCat = async (req, res) => {
+    getCat = async (req, res) => {
         const { userId } = req.params;
+        const { page = 1, limit = 10 } = req.query;
         try {
             if (!userId) {
                 return res
                     .status(400)
                     .json({ status_code: 400, error: "User ID is required." });
             }
-            const categories = await Category.find({ userId, deleted: false });
+            const skip = (page - 1) * limit;
+            const categories = await Category.find({ userId, deleted: false }).skip(skip)
+                .limit(parseInt(limit));
+            const total = await Category.countDocuments({ userId, deleted: false });
             res.status(200).json({
                 status_code: 200,
                 message: "Categories retrieved successfully.",
                 categories,
+                pagination: {
+                    total,
+                    page: parseInt(page),
+                    limit: parseInt(limit),
+                    totalPages: Math.ceil(total / limit),
+                }
+            });
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ error: "Internal server error" });
+        }
+    }
+
+    getAllCat = async (req, res) => {
+        try {
+            const { userId } = req.params;
+            if (!userId) {
+                return res
+                    .status(400)
+                    .json({ status_code: 400, error: "User ID is required." });
+            }
+            const categories = await Category.find({ userId, deleted: false }).select("name color");
+            res.status(200).json({
+                status_code: 200,
+                message: "Categories retrieved successfully.",
+                data:categories,
             });
         } catch (error) {
             console.error(error);

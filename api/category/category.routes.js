@@ -10,5 +10,6 @@ router.get("/get/:userId", categoryController.getCat);
 router.get("/getById/:categoryId", categoryController.getCatById);
 router.put("/update/:categoryId", categoryController.updateCat);
 router.delete("/delete/:categoryId", categoryController.deleteCat);
+router.get("/getAll/:userId", categoryController.getAllCat);
 
 module.exports = router;
